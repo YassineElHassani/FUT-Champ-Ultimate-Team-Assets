@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&family=Pathway+Gothic+One&display=swap');
+
 * {
     padding: 0; 
     margin: 0; 
@@ -9,6 +11,167 @@ html {
 }
 
 body {
-    font-family: "Nunito", sans-serif;
-    background: #0E0E0E;
+    font-family: "Didact Gothic", sans-serif;
+    background: #122135;
+    color: #fff;
+}
+
+/* Mobile */
+@media (min-width: 768px) {
+    .stadium {
+        background-image: url('./src/assets/img/stadium.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 80%;
+        width: 100%;
+        border-radius: 50px;
+    }
+
+    #attackPlayer {
+        display: flex;
+        justify-content: space-around;
+        width: 550px;
+        padding-top: 100px;
+    }
+    
+    #attackPlayer img {
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+
+    #centerPlayer {
+        display: flex;
+        justify-content: space-around;
+        width: 750px;
+        padding-top: 0px;
+    }
+    
+    #centerPlayer img {
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+    
+    #defencePlayer {
+        display: flex;
+        justify-content: space-between;
+        width: 750px;
+        padding-top: 0px;
+    }
+    
+    #defencePlayer img {
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+    
+    #golePlayer {
+        display: flex;
+        justify-content: center;
+        padding-top: 0px;
+    }
+    
+    #golePlayer img {
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+
+    #photo:hover {
+        transform: scale(1.3);
+    }
+}
+/* tablet */
+@media (min-width: 995px) {
+    .stadium {
+        background-image: url('./src/assets/img/stadium.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100%;
+        width: 100%;
+    }
+
+}
+/* desktop */
+@media (min-width: 1200px) {
+
+    #playerContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .stadium {
+        background-image: url('./src/assets/img/stadium.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 800px;
+        height: 100%;
+        width: 100%;
+    }
+
+    #attackPlayer {
+        display: flex;
+        justify-content: space-around;
+        width: 530px;
+        padding-top: 250px;
+    }
+    
+    #attackPlayer img {
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+    
+    #centerPlayer {
+        display: flex;
+        justify-content: space-around;
+        width: 800px;
+        padding-top: 0px;
+    }
+    
+    #centerPlayer img {
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+    
+    #defencePlayer {
+        display: flex;
+        justify-content: space-between;
+        width: 800px;
+        padding-top: 0px;
+    }
+    
+    #defencePlayer img {
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+    
+    #golePlayer {
+        display: flex;
+        justify-content: center;
+        padding-top: 0px;
+    }
+
+    #golePlayer img {
+        position: relative;
+        height: 190px;
+        width: 150px;
+        transform:12scale(1);
+        transition: .3s ease-in-out;
+    }
+
+    #photo:hover {
+        transform: scale(1.5);
+    }
 }
