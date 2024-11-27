@@ -18,6 +18,10 @@ body {
 
 /* Mobile */
 @media (min-width: 768px) {
+    #nav_btn {
+        display: block;
+    }
+
     .stadium {
         background-image: url('./src/assets/img/stadium.png');
         background-position: center;
@@ -33,26 +37,12 @@ body {
         width: 550px;
         padding-top: 100px;
     }
-    
-    #attackPlayer img {
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
-    }
 
     #centerPlayer {
         display: flex;
         justify-content: space-around;
         width: 750px;
         padding-top: 0px;
-    }
-    
-    #centerPlayer img {
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
     }
     
     #defencePlayer {
@@ -62,29 +52,28 @@ body {
         padding-top: 0px;
     }
     
-    #defencePlayer img {
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
-    }
-    
     #golePlayer {
         display: flex;
         justify-content: center;
         padding-top: 0px;
     }
     
-    #golePlayer img {
+    .pl {
+        /* background-image: url("/src/assets/img/badge_gold.webp"); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         height: 190px;
         width: 150px;
         transform: scale(1);
         transition: .3s ease-in-out;
     }
 
-    #photo:hover {
-        transform: scale(1.3);
-    }
+    .pl:hover {
+        z-index: 1;
+        transform: scale(1.5);
+        filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
+}
 }
 /* tablet */
 @media (min-width: 995px) {
@@ -96,9 +85,28 @@ body {
         width: 100%;
     }
 
+    .pl {
+        /* background-image: url("/src/assets/img/badge_gold.webp"); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 190px;
+        width: 150px;
+        transform: scale(1);
+        transition: .3s ease-in-out;
+    }
+
+    .pl:hover {
+        z-index: 1;
+        transform: scale(1.5);
+        filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
+    }
 }
 /* desktop */
 @media (min-width: 1200px) {
+    #nav_btn {
+        display: none;
+    }
 
     #playerContainer {
         display: flex;
@@ -122,25 +130,11 @@ body {
         padding-top: 250px;
     }
     
-    #attackPlayer img {
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
-    }
-    
     #centerPlayer {
         display: flex;
         justify-content: space-around;
         width: 800px;
         padding-top: 0px;
-    }
-    
-    #centerPlayer img {
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
     }
     
     #defencePlayer {
@@ -150,28 +144,26 @@ body {
         padding-top: 0px;
     }
     
-    #defencePlayer img {
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
-    }
-    
     #golePlayer {
         display: flex;
         justify-content: center;
         padding-top: 0px;
     }
 
-    #golePlayer img {
-        position: relative;
+    .pl {
+        /* background-image: url("/src/assets/img/badge_gold.webp"); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         height: 190px;
         width: 150px;
-        transform:12scale(1);
+        transform: scale(1);
         transition: .3s ease-in-out;
     }
 
-    #photo:hover {
+    .pl:hover {
+        z-index: 1;
         transform: scale(1.5);
+        filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
     }
 }
