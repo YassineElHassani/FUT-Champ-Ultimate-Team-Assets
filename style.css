@@ -14,9 +14,72 @@ body {
     border-radius: 50px;
 }
 
+#attackPlayer {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 350px;
+
+}
+
+#attackPlayer .LF {
+    margin-top: 50px;
+}
+
+#attackPlayer .ST {
+    margin-bottom: 50px;
+
+}
+
+#attackPlayer .RF {
+    margin-top: 50px;
+}
+
+#midPlayer {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
+
+#midPlayer .CM {
+    margin-top: 50px;
+}
+
+#midPlayer .CAM {
+    margin-bottom: 50px;
+}
+
+#defencePlayer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#defencePlayer .LB {
+    margin-top: 50px;
+}
+
+#defencePlayer .RB {
+    margin-top: 50px;
+}
+
+#defencePlayer .CB {
+    margin-bottom: 50px;
+}
+
+#gkPlayer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 90px;
+}
+
+#gkPlayer .GK {
+    margin-bottom: 0px;
+}
+
 .playerSlot {
     position: relative;
-    background-image: url("./src/assets/img/gold.png");
+    background-image: url("./src/assets/img/rttk.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

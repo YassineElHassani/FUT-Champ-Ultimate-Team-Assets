@@ -23,23 +23,27 @@
         <div class="grid md:grid-cols-[2fr,1fr] gap-8">
             <section class="stadium p-4">
                 <div class="flex flex-col items-center">
-                    <div id="attackPlayer" class="flex justify-around w-full mb-4"  style="margin-top: 10%; width: 50%;">
+                    <div id="attackPlayer">
                         <div class="playerSlot LF"></div>
                         <div class="playerSlot ST"></div>
                         <div class="playerSlot RF"></div>
                     </div>
-                    <div id="midPlayer" class="flex justify-around w-full mb-4" style="width: 70%;">
+                    <div id="midPlayer">
                         <div class="playerSlot CM"></div>
                         <div class="playerSlot CAM"></div>
                         <div class="playerSlot CM"></div>
                     </div>
-                    <div id="defencePlayer" class="flex justify-around w-full mb-4" style="width: 90%;">
-                        <div class="playerSlot LB"></div>
-                        <div class="playerSlot CB"></div>
-                        <div class="playerSlot CB"></div>
-                        <div class="playerSlot RB"></div>
+                    <div id="defencePlayer">
+                        <div style="display: flex; justify-content: space-around; width: 100%;">
+                            <div class="playerSlot LB"></div>
+                            <div class="playerSlot CB"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-around; width: 100%;">
+                            <div class="playerSlot CB"></div>
+                            <div class="playerSlot RB"></div>
+                        </div>
                     </div>
-                    <div id="gkPlayer" class="flex justify-center">
+                    <div id="gkPlayer">
                         <div class="playerSlot GK"></div>
                     </div>
                 </div>

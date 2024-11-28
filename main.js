@@ -25,16 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
     playerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const position = playerPosition.value;
+        
         const playerSlots = document.querySelectorAll(`.${position}`);
         let playerSlot = null;
     
         for (const slot of playerSlots) {
-            if (!slot.hasChildNodes()) {
+            if (slot.childElementCount === 0) {
                 playerSlot = slot;
                 break;
             }
         }
-    
+        
+
         if (!playerSlot) {
             alert(`The ${position} slot is already existing`);
             return;
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const playerCard = document.createElement('div');
         playerCard.className = 'playerCard w-full h-full flex flex-col items-center justify-center';
-        playerCard.style.backgroundImage = 'url(./src/assets/img/gold.png)';
+        playerCard.style.backgroundImage = 'url(./src/assets/img/rttk.png)';
     
         const playerRating = document.getElementById('playerRating').value;
         const playerPhoto = document.getElementById('playerPhoto').value;
@@ -55,21 +57,63 @@ document.addEventListener('DOMContentLoaded', () => {
             const playerReflexes = document.getElementById('playerReflexes').value;
             const playerSpeed = document.getElementById('playerSpeed').value;
             const playerPositioning = document.getElementById('playerPositioning').value;
-    
-            playerCard.innerHTML = `
-                <p class="absolute top-6 left-5 text-black">${position}</p>
-                <p class="absolute top-10 left-5 text-red-600">${playerRating}</p>
-                <center><img src="${playerPhoto}" class="mt-7" height="120" width="95"></center>
-                <center><p class="text-[12px] text-black">${playerName}</p></center>
-                <div class="flex justify-center gap-1" style="margin-bottom: 5px;">
-                    <div><p class="text-[7px] text-black">DIV</p><p class="text-[8px] text-red-600">${playerDiving}</p></div>
-                    <div><p class="text-[7px] text-black">HAN</p><p class="text-[8px] text-red-600">${playerHandling}</p></div>
-                    <div><p class="text-[7px] text-black">KIC</p><p class="text-[8px] text-red-600">${playerKicking}</p></div>
-                    <div><p class="text-[7px] text-black">REF</p><p class="text-[8px] text-red-600">${playerReflexes}</p></div>
-                    <div><p class="text-[7px] text-black">SPE</p><p class="text-[8px] text-red-600">${playerSpeed}</p></div>
-                    <div><p class="text-[7px] text-black">POS</p><p class="text-[8px] text-red-600">${playerPositioning}</p></div>
-                </div>
-            `;
+        
+            const pos = document.createElement('p');
+            pos.className = 'absolute top-6 left-5 text-white';
+            pos.textContent = position;
+            playerCard.appendChild(pos);
+        
+            const rating = document.createElement('p');
+            rating.className = 'absolute top-10 left-5 text-amber-400';
+            rating.textContent = playerRating;
+            playerCard.appendChild(rating);
+        
+            const img = document.createElement('img');
+            img.src = playerPhoto;
+            img.className = 'mt-7';
+            img.height = 120;
+            img.width = 95;
+            const imgCenter = document.createElement('center');
+            imgCenter.appendChild(img);
+            playerCard.appendChild(imgCenter);
+        
+            const name = document.createElement('p');
+            name.className = 'text-[12px] text-white';
+            name.textContent = playerName;
+            const nameCenter = document.createElement('center');
+            nameCenter.appendChild(name);
+            playerCard.appendChild(nameCenter);
+        
+            const container = document.createElement('div');
+            container.className = 'flex justify-center gap-1';
+            container.style.marginBottom = '5px';
+        
+            const attributes = [
+                { label: 'DIV', value: playerDiving },
+                { label: 'HAN', value: playerHandling },
+                { label: 'KIC', value: playerKicking },
+                { label: 'REF', value: playerReflexes },
+                { label: 'SPE', value: playerSpeed },
+                { label: 'POS', value: playerPositioning },
+            ];
+        
+            attributes.forEach(attr => {
+                const infoContainer = document.createElement('div');
+                const text = document.createElement('p');
+                text.className = 'text-[7px] text-white';
+                text.textContent = attr.label;
+        
+                const textValue = document.createElement('p');
+                textValue.className = 'text-[8px] text-amber-400';
+                textValue.textContent = attr.value;
+        
+                infoContainer.appendChild(text);
+                infoContainer.appendChild(textValue);
+                container.appendChild(infoContainer);
+            });
+        
+            playerCard.appendChild(container);
+        
         } else {
             const playerPace = document.getElementById('playerPace').value;
             const playerShooting = document.getElementById('playerShooting').value;
@@ -77,22 +121,64 @@ document.addEventListener('DOMContentLoaded', () => {
             const playerDribbling = document.getElementById('playerDribbling').value;
             const playerDefending = document.getElementById('playerDefending').value;
             const playerPhysical = document.getElementById('playerPhysical').value;
-    
-            playerCard.innerHTML = `
-                <p class="absolute top-6 left-5 text-black">${position}</p>
-                <p class="absolute top-10 left-5 text-red-600">${playerRating}</p>
-                <center><img src="${playerPhoto}" class="mt-7" height="120" width="95"></center>
-                <center><p class="text-[12px] text-black">${playerName}</p></center>
-                <div class="flex justify-center gap-1" style="margin-bottom: 5px;">
-                    <div><p class="text-[7px] text-black">PAC</p><p class="text-[8px] text-red-600">${playerPace}</p></div>
-                    <div><p class="text-[7px] text-black">SHO</p><p class="text-[8px] text-red-600">${playerShooting}</p></div>
-                    <div><p class="text-[7px] text-black">PAS</p><p class="text-[8px] text-red-600">${playerPassing}</p></div>
-                    <div><p class="text-[7px] text-black">DRI</p><p class="text-[8px] text-red-600">${playerDribbling}</p></div>
-                    <div><p class="text-[7px] text-black">DEF</p><p class="text-[8px] text-red-600">${playerDefending}</p></div>
-                    <div><p class="text-[7px] text-black">PHY</p><p class="text-[8px] text-red-600">${playerPhysical}</p></div>
-                </div>
-            `;
+        
+            const pos = document.createElement('p');
+            pos.className = 'absolute top-6 left-5 text-white';
+            pos.textContent = position;
+            playerCard.appendChild(pos);
+        
+            const rating = document.createElement('p');
+            rating.className = 'absolute top-10 left-5 text-amber-400';
+            rating.textContent = playerRating;
+            playerCard.appendChild(rating);
+        
+            const img = document.createElement('img');
+            img.src = playerPhoto;
+            img.className = 'mt-7';
+            img.height = 120;
+            img.width = 95;
+            const imgCenter = document.createElement('center');
+            imgCenter.appendChild(img);
+            playerCard.appendChild(imgCenter);
+        
+            const name = document.createElement('p');
+            name.className = 'text-[12px] text-white';
+            name.textContent = playerName;
+            const nameCenter = document.createElement('center');
+            nameCenter.appendChild(name);
+            playerCard.appendChild(nameCenter);
+        
+            const container = document.createElement('div');
+            container.className = 'flex justify-center gap-1';
+            container.style.marginBottom = '5px';
+        
+            const attributes = [
+                { label: 'PAC', value: playerPace },
+                { label: 'SHO', value: playerShooting },
+                { label: 'PAS', value: playerPassing },
+                { label: 'DRI', value: playerDribbling },
+                { label: 'DEF', value: playerDefending },
+                { label: 'PHY', value: playerPhysical },
+            ];
+        
+            attributes.forEach(attr => {
+                const infoContainer = document.createElement('div');
+                const labelElement = document.createElement('p');
+                labelElement.className = 'text-[7px] text-white';
+                labelElement.textContent = attr.label;
+        
+                const valueElement = document.createElement('p');
+                valueElement.className = 'text-[8px] text-amber-400';
+                valueElement.textContent = attr.value;
+        
+                infoContainer.appendChild(labelElement);
+                infoContainer.appendChild(valueElement);
+                container.appendChild(infoContainer);
+            });
+        
+            playerCard.appendChild(container);
         }
+        
     
         playerSlot.innerHTML = '';
         playerSlot.appendChild(playerCard);
