@@ -1,182 +1,94 @@
-const playerContainer = document.getElementById("playerContainer");
-const playerForm = document.getElementById("playerForm");
-const plyForm = document.querySelectorAll('.ply');
-const gkForm = document.querySelectorAll('.gk');
+document.addEventListener('DOMContentLoaded', () => {
+    const addPlayerBtn = document.getElementById('addPlayerBtn');
+    const playerFormContainer = document.getElementById('playerFormContainer');
+    const playerForm = document.getElementById('playerForm');
+    const playerPosition = document.getElementById('playerPosition');
+    const standardPlayer = document.getElementById('standardPlayer');
+    const gkFields = document.getElementById('gkFields');
+    const cancelBtn = document.getElementById('cancelBtn');
 
+    addPlayerBtn.addEventListener('click', () => {
+        playerFormContainer.classList.remove('hidden');
+    });
 
-// displayData();
+    cancelBtn.addEventListener('click', () => {
+        playerFormContainer.classList.add('hidden');
+        playerForm.reset();
+    });
 
-function addPlayer() {
-    playerContainer.classList.remove('hidden');
-}
+    playerPosition.addEventListener('change', (e) => {
+        const isGoalkeeper = e.target.value === 'GK';
+        standardPlayer.classList.toggle('hidden', isGoalkeeper);
+        gkFields.classList.toggle('hidden', !isGoalkeeper);
+    });
 
-function closeContainer() {
-    playerContainer.classList.add('hidden');
-}
+    playerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const position = playerPosition.value;
+        const playerSlot = document.querySelector(`.${position}`);
 
+        if (!playerSlot) {
+            alert('Invalid position selected');
+            return;
+        }
 
-//Submit the inputs data 
-playerForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+        const playerCard = document.createElement('div');
+        playerCard.className = 'player-card w-full h-full flex flex-col items-center justify-center';
+        playerCard.style.backgroundImage = 'url(./src/assets/img/gold.png)';
 
-    const playerName = document.getElementById("playerName").value;
-    const playerPhoto = document.getElementById("playerPhoto").value;
-    const playerPosition = document.getElementById("playerPosition").value;
-    const playerNationalityFlag = document.getElementById("playerNationalityFlag").value;
-    const playerClub = document.getElementById("playerClub").value;
-    const playerClubLogo = document.getElementById("playerClubLogo").value;
-    const playerRating = document.getElementById("playerRating").value;
-    const playerPace = document.getElementById("playerPace").value;
-    const playerShooting = document.getElementById("playerShooting").value;
-    const playerPassing = document.getElementById("playerPassing").value;
-    const playerDribbling = document.getElementById("playerDribbling").value;
-    const playerDefending = document.getElementById("playerDefending").value;
-    const playerPhysical = document.getElementById("playerPhysical").value;
-    //GK
-    const playerDiving = document.getElementById("playerDiving").value;
-    const playerHandling = document.getElementById("playerHandling").value;
-    const playerKicking = document.getElementById("playerKicking").value;
-    const playerReflexes = document.getElementById("playerReflexes").value;
-    const playerSpeed = document.getElementById("playerSpeed").value;
-    const playerPositioning = document.getElementById("playerPositioning").value;
+        const playerRating = document.getElementById('playerRating').value;
+        const playerPhoto = document.getElementById('playerPhoto').value;
+        const playerName = document.getElementById('playerName').value;
 
-    console.log(`Player Added: ${playerName},
-                             ${playerPhoto}, ${playerPosition}, ${playerNationalityFlag}, 
-                             ${playerClub}, ${playerClubLogo}, ${playerRating}, 
-                             ${playerPace}, ${playerShooting}, ${playerPassing}, 
-                             ${playerDribbling}, ${playerDefending}, ${playerPhysical}, 
-                             ${playerDiving}, ${playerHandling}, ${playerKicking}, 
-                             ${playerReflexes}, ${playerSpeed}, ${playerPositioning}`,);
+        if (position === 'GK') {
+            const playerDiving = document.getElementById('playerDiving').value;
+            const playerHandling = document.getElementById('playerHandling').value;
+            const playerKicking = document.getElementById('playerKicking').value;
+            const playerReflexes = document.getElementById('playerReflexes').value;
+            const playerSpeed = document.getElementById('playerSpeed').value;
+            const playerPositioning = document.getElementById('playerPositioning').value;
 
-    
-    const playerCard = document.createElement("div");
-    playerCard.classList.add("LM");
-    playerCard.style.backgroundImage = `./src/assets/img/bronze.png`;
+            playerCard.innerHTML = `
+                <p class="absolute top-6 left-5 text-black">${position}</p>
+                <p class="absolute top-10 left-5 text-red-600">${playerRating}</p>
+                <center><img src="${playerPhoto}" class="mt-7" height="120" width="95"></center>
+                <center><p class="text-[12px] text-black">${playerName}</p></center>
+                <div class="flex justify-center gap-1" style="margin-bottom: 5px;">
+                    <div><p class="text-[7px] text-black">DIV</p><p class="text-[8px] text-red-600">${playerDiving}</p></div>
+                    <div><p class="text-[7px] text-black">HAN</p><p class="text-[8px] text-red-600">${playerHandling}</p></div>
+                    <div><p class="text-[7px] text-black">KIC</p><p class="text-[8px] text-red-600">${playerKicking}</p></div>
+                    <div><p class="text-[7px] text-black">REF</p><p class="text-[8px] text-red-600">${playerReflexes}</p></div>
+                    <div><p class="text-[7px] text-black">SPE</p><p class="text-[8px] text-red-600">${playerSpeed}</p></div>
+                    <div><p class="text-[7px] text-black">POS</p><p class="text-[8px] text-red-600">${playerPositioning}</p></div>
+                </div>
+                `;
+        } else {
+            const playerPace = document.getElementById('playerPace').value;
+            const playerShooting = document.getElementById('playerShooting').value;
+            const playerPassing = document.getElementById('playerPassing').value;
+            const playerDribbling = document.getElementById('playerDribbling').value;
+            const playerDefending = document.getElementById('playerDefending').value;
+            const playerPhysical = document.getElementById('playerPhysical').value;
+        
+            playerCard.innerHTML = `
+                <p class="absolute top-6 left-5 text-black">${position}</p>
+                <p class="absolute top-10 left-5 text-red-600">${playerRating}</p>
+                <center><img src="${playerPhoto}" class="mt-7" height="120" width="95"></center>
+                <center><p class="text-[12px] text-black">${playerName}</p></center>
+                <div class="flex justify-center gap-1" style="margin-bottom: 5px;">
+                    <div><p class="text-[7px] text-black">PAC</p><p class="text-[8px] text-red-600">${playerPace}</p></div>
+                    <div><p class="text-[7px] text-black">SHO</p><p class="text-[8px] text-red-600">${playerShooting}</p></div>
+                    <div><p class="text-[7px] text-black">PAS</p><p class="text-[8px] text-red-600">${playerPassing}</p></div>
+                    <div><p class="text-[7px] text-black">DRI</p><p class="text-[8px] text-red-600">${playerDribbling}</p></div>
+                    <div><p class="text-[7px] text-black">DEF</p><p class="text-[8px] text-red-600">${playerDefending}</p></div>
+                    <div><p class="text-[7px] text-black">PHY</p><p class="text-[8px] text-red-600">${playerPhysical}</p></div>
+                </div>`;
+        }
 
-    const cardContent = document.createElement("div");
-    cardContent.classList.add("card_content");
+        playerSlot.innerHTML = '';
+        playerSlot.appendChild(playerCard);
 
-    const contentPlayerPhoto = document.createElement("img");
-    contentPlayerPhoto.setAttribute("src", playerPhoto.value);
-
-    const contentPlayerName = document.createElement("p");
-    contentPlayerName.textContent = playerName;
-
-    const playerStats = document.createElement("div");
-    playerStats.classList.add("player_stats");
-    
-    
-    function createStat(label, value) {
-        const stat = document.createElement("div");
-        const statLabel = document.createElement("strong");
-        statLabel.textContent = label;
-        stat.appendChild(statLabel);
-        stat.appendChild(document.createTextNode(value));
-        return stat;
-    }
-    
-
-    playerStats.appendChild(createStat("Rating: ", playerRating));
-    playerStats.appendChild(createStat("Pace: ", playerPace));
-    playerStats.appendChild(createStat("Shooting: ", playerShooting));
-    playerStats.appendChild(createStat("Passing: ", playerPassing));
-    playerStats.appendChild(createStat("Dribbling: ", playerDribbling));
-    playerStats.appendChild(createStat("Defending: ", playerDefending));
-    playerStats.appendChild(createStat("Physical: ", playerPhysical));
-
-    cardContent.appendChild(contentPlayerName);
-    cardContent.appendChild(playerStats);
-    playerCard.appendChild(cardContent);
-
-    if (position === "RW" || position === "LW" || position === "CF") {
-        document.getElementById("attackPlayer").appendChild(playerCard);
-    } else if (position === "CM") {
-        document.getElementById("centerPlayer").appendChild(playerCard);
-    } else if (position === "CB") {
-        document.getElementById("defencePlayer").appendChild(playerCard);
-    } else if (position === "GK") {
-        document.getElementById("golePlayer").appendChild(playerCard);
-    }
-    
-    playerForm.reset();
-    
-    closeContainer();
+        playerFormContainer.classList.add('hidden');
+        playerForm.reset();
+    });
 });
-
-
-//Switching the form
-// function formChoose() {
-//     if(playerPosition.value === "GK") {
-//         gkForm.forEach(field => field.style.display = "block");
-//         plyForm.forEach(field => field.style.display="none");
-//     } else {
-//         gkForm.forEach(field => field.style.display = "none");
-//         plyForm.forEach(field => field.style.display="block");
-//     }
-// }
-
-// playerPosition.addEventListener("change", formChoose);
-// formChoose();
-
-
-// function displayData() {
-//     if(playerPosition.value === "LF") {
-//         let LF = document.getElementsByClassName('.LF');
-//         const LF_rate = document.createElement("p");
-//         LF_rate.innerText = playerRating.value;
-//         LF.appendChild(LF_rate);
-//         const LF_photo = document.createElement("img");
-//         LF_photo.setAttribute("src", playerPhoto.value);
-//         LF.appendChild(LF_photo);
-//         const LF_name = document.createElement("p");
-//         LF_name.innerText = playerName.value;
-//         LF.appendChild(LF_name);
-//         const LF_div = document.createElement("div");
-//         LF_div.setAttribute("id", "LF_div");
-//         LF.appendChild(LF_div);
-//         const LF_div_pac = document.createElement("div");
-//         LF_div.appendChild(LF_div_pac);
-//         const LF_PAC = document.createElement("p");
-//         const LF_PAC_NUM = document.createElement("p");
-//         LF_PAC.innerText = "PAC";
-//         LF_PAC_NUM = playerPace.value;
-//         LF_div_pac.appendChild(LF_PAC);
-//         LF_div_pac.appendChild(LF_PAC_NUM);
-//         const LF_div_sho = document.createElement("div");
-//         LF_div.appendChild(LF_div_sho);
-//         const LF_SHO = document.createElement("p");
-//         const LF_SHO_NUM = document.createElement("p");
-//         LF_SHO.innerText = "SHO";
-//         LF_SHO_NUM = playerShooting.value;
-//         LF_div_sho.appendChild(LF_SHO);
-//         LF_div_sho.appendChild(LF_SHO_NUM);
-//         const LF_div_pas = document.createElement("div");
-//         LF_div.appendChild(LF_div_pas);
-//         const LF_PAS = document.createElement("p");
-//         const LF_PAS_NUM = document.createElement("p");
-//         LF_PAS.innerText = "PAS";
-//         LF_PAS_NUM = playerPassing.value;
-//         LF_div_pas.appendChild(LF_PAS);
-//         LF_div_pas.appendChild(LF_PAS_NUM);
-
-//     }
-// }
-
-// async function displayData() {
-//     const playersData = await getData();
-    
-//     console.log(playersData);
-    
-//     const playerSelect = document.getElementById("playerSelect");
-    
-//     for (const player of playersData.players) {
-//         playerSelect.innerHTML += `<option>${player.name}</option>`;
-//     }
-// }
-
-// async function getData() {
-//     const res = await fetch("./nation.json");
-//     const data = await res.json();
-//     return data;
-// }
-

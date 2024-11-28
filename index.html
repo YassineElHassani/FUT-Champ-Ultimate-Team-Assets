@@ -9,223 +9,148 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header class="flex justify-between items-center py-2 bg-gray-800 text-white">
-        <div class="flex items-center gap-[5px]">
-            <img src="./src/assets/img/logo.png" alt="Logo" class="ml-5 h-[50px] w-[50px]">
-            <h1 class="text-sm font-orbitron text-[#94a3b8]">Champions Squad Builder</h1>
+    <header class="flex justify-between items-center p-4 bg-gray-800 text-white">
+        <div class="flex items-center gap-2">
+            <img src="./src/assets/img/logo.png" alt="Logo" class="h-12 w-12">
+            <h1 class="text-xl font-orbitron text-[#94a3b8]">Champions Squad Builder</h1>
         </div>
-        <button id="nav_btn" class="text-[#94a3b8] bg-[#122135] rounded-[30px] mr-5 p-3 hover:bg-gray-900 hover:text-[#fff]" type="button" onclick="addPlayer()">
-        Add Player
+        <button id="addPlayerBtn" class="bg-[#122135] text-[#94a3b8] rounded-full px-4 py-2 hover:bg-gray-900">
+            Add Player
         </button>
-
     </header>
-    <main class="flex gap-[150px] container mx-auto py-8 h-[130vh]" id="mainContainer">
-        
-        <section class="stadium">
-            <center>
-                <div id="attackPlayer">
-                    <div class="pl LF">
-                        <!-- <p style="color: black; float: left; position: absolute; padding-left: 20%; padding-top: 20%;">LF</p>
-                        <p id="lf_rate" style="color: red; float: left; position: absolute; padding-left: 19%; padding-top: 30%;">93</p>
-                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png" height="120" width="95" style="padding-top: 19%;">
-                        <p id="lf_name" style="position: absolute; padding-left: 20%; color: black;">Lionel Messi</p>
-                        <div id="LF_div" style="display: flex; justify-content: center; padding-top: 14%; width: 150px; gap: 2px;">
-                            <div>
-                                <p style="color: black; font-size: 10px;">PAC</p>
-                                <p style="color: red;  font-size: 10px;">93</p>
-                            </div>
-                            <div>
-                                <p style="color: black; font-size: 10px;">SHO</p>
-                                <p style="color: red;  font-size: 10px;">93</p>
-                            </div>
-                            <div>
-                                <p style="color: black; font-size: 10px;">PAS</p>
-                                <p style="color: red;  font-size: 10px;">93</p>
-                            </div>
-                            <div>
-                                <p style="color: black; font-size: 10px;">DRI</p>
-                                <p style="color: red;  font-size: 10px;">93</p>
-                            </div>
-                            <div>
-                                <p style="color: black; font-size: 10px;">DEF</p>
-                                <p style="color: red;  font-size: 10px;">93</p>
-                            </div>
-                            <div>
-                                <p style="color: black; font-size: 10px;">PHY</p>
-                                <p style="color: red; font-size: 10px;">93</p>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="pl ST">
 
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid md:grid-cols-[2fr,1fr] gap-8">
+            <section class="stadium p-4">
+                <div class="flex flex-col items-center">
+                    <div id="attackPlayer" class="flex justify-around w-full mb-4"  style="margin-top: 10%; width: 50%;">
+                        <div class="player-slot LF"></div>
+                        <div class="player-slot ST"></div>
+                        <div class="player-slot RF"></div>
                     </div>
-                    <div class="pl RF">
-
+                    <div id="midPlayer" class="flex justify-around w-full mb-4" style="width: 70%;">
+                        <div class="player-slot CM"></div>
+                        <div class="player-slot CAM"></div>
+                        <div class="player-slot CM"></div>
+                    </div>
+                    <div id="defencePlayer" class="flex justify-around w-full mb-4" style="width: 90%;">
+                        <div class="player-slot LB"></div>
+                        <div class="player-slot CB"></div>
+                        <div class="player-slot CB"></div>
+                        <div class="player-slot RB"></div>
+                    </div>
+                    <div id="gkPlayer" class="flex justify-center">
+                        <div class="player-slot GK"></div>
                     </div>
                 </div>
-                <div id="centerPlayer">
-                    <div class="pl CM">
+            </section>
 
-                    </div>
-                    <div class="pl DM">
+            <section id="playerFormContainer" class="hidden bg-gray-800 rounded-[50px] p-6">
+                <form id="playerForm" class="space-y-4" action="submit" method="post">
+                    <h2 class="text-xl font-bold mb-4">Add Player</h2>
 
-                    </div>
-                    <div class="pl CM">
-
-                    </div>
-                </div>
-                <div id="defencePlayer">
-                    <div class="pl LB">
-
-                    </div>
-                    <div class="pl CB">
-
-                    </div>
-                    <div class="pl CB">
-
-                    </div>
-                    <div class="pl RB">
-
-                    </div>
-                </div>
-                <div id="golePlayer">
-                    <div class="pl GK">
-
-                    </div>
-                </div>
-            </center>
-        </section>
-
-        <div id="playerContainer">
-            <div class="bg-gray-800 text-white p-6 rounded-md w-[80vw] max-w-md">
-                <h2 class="text-lg font-bold mb-4">Add a New Player</h2>
-                <form id="playerForm" class="flex flex-col gap-4">
                     <div>
-                        <label for="playerPosition" class="block mb-1">Choose Position:</label>
-                        <select id="playerPosition" class="w-full p-2 rounded bg-gray-700 text-white" required>
-                            <option value="">-- select one --</option>
-                            <option value="GK">Goalkeeper (GK)</option>
-                            <option value="CB">Center Back (CB)</option>
-                            <option value="LB">Left Back (LB)</option>
-                            <option value="RB">Right Back (RB)</option>
-                            <option value="CM">Central Midfielder (CM)</option>
-                            <option value="LW">Left Winger (LW)</option>
-                            <option value="RW">Right Winger (RW)</option>
-                            <option value="ST">Striker (ST)</option>
+                        <label for="playerPosition" class="block mb-2">Position</label>
+                        <select id="playerPosition" class="w-full p-2 bg-gray-700 rounded" required>
+                            <option value="">Select Position</option>
+                            <option value="GK">Goalkeeper</option>
+                            <option value="CB">Center Back</option>
+                            <option value="LB">Left Back</option>
+                            <option value="RB">Right Back</option>
+                            <option value="CM">Central Midfielder</option>
+                            <option value="CAM">Central Attacking Midfielder</option>
+                            <option value="ST">Striker</option>
+                            <option value="LF">Left Forward</option>
+                            <option value="RF">Right Forward</option>
                         </select>
                     </div>
-                    
-                    <div class="flex flex-wrap">
-                        <div class="ply w-[50%] p-2">
-                            <label for="playerName" class="block mb-1">Player Name:</label>
-                            <input type="text" id="playerName" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player name" required>
+
+                    <div id="standardFields">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="playerName" class="block mb-2">Player Name</label>
+                                <input type="text" id="playerName" placeholder="Player Name" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerClub" class="block mb-2">Club</label>
+                                <input type="text" id="playerClub" placeholder="Club" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerPhoto" class="block mb-2">Photo URL</label>
+                                <input type="url" id="playerPhoto" placeholder="Photo URL" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerRating" class="block mb-2">Rating</label>
+                                <input type="number" id="playerRating" placeholder="Rating" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
                         </div>
-                        <div class="ply w-[50%] p-2">
-                            <label for="playerPhoto" class="block mb-1">Player Photo:</label>
-                            <input type="text" id="playerPhoto" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="URL of the photo" required>
-                        </div>
-                        <div class="ply w-[50%] p-2">
-                            <label for="playerNationalityFlag" class="block mb-1">Nationality Flag:</label>
-                            <input type="text" id="playerNationalityFlag" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="URL of the flag" required>
-                        </div>
-                        <div class="ply w-[50%] p-2">
-                            <label for="playerClub" class="block mb-1">Club:</label>
-                            <input type="text" id="playerClub" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player club name" required>
-                        </div>
-                        <div class="ply w-[50%] p-2">
-                            <label for="playerClubLogo" class="block mb-1">Logo:</label>
-                            <input type="text" id="playerClubLogo" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="URL of the club logo" required>
-                        </div>
-                        <div class="ply w-[50%] p-2">
-                            <label for="playerRating" class="block mb-1">Rating:</label>
-                            <input type="number" id="playerRating" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player rating" required>
-                        </div>
-                        <div class="ply w-[50%] p-2" id="pace">
-                            <label for="playerPace" class="block mb-1">Pace:</label>
-                            <input type="number" id="playerPace" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player pace" required>
-                        </div>
-                        <div class="ply w-[50%] p-2" id="shooting">
-                            <label for="playerShooting" class="block mb-1">Shooting:</label>
-                            <input type="number" id="playerShooting" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player shooting" required>
-                        </div>
-                        <div class="ply w-[50%] p-2" id="passing">
-                            <label for="playerPassing" class="block mb-1">Passing:</label>
-                            <input type="number" id="playerPassing" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player passing" required>
-                        </div>
-                        <div class="ply w-[50%] p-2" id="dribbling">
-                            <label for="playerDribbling" class="block mb-1">Dribbling:</label>
-                            <input type="number" id="playerDribbling" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Payer dribbling" required>
-                        </div>
-                        <div class="ply w-[50%] p-2" id="defending">
-                            <label for="playerDefending" class="block mb-1">Defending:</label>
-                            <input type="number" id="playerDefending" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player defending" required>
-                        </div>
-                        <div class="ply w-[50%] p-2" id="physical">
-                            <label for="playerPhysical" class="block mb-1">Physical:</label>
-                            <input type="number" id="playerPhysical" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player physical" required>
+
+                        <div id="standardPlayer" class="grid grid-cols-3 gap-2 mt-4">
+                            <div>
+                                <label for="playerPace" class="block mb-2">Pace</label>
+                                <input type="number" id="playerPace" placeholder="Pace" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerShooting" class="block mb-2">Shooting</label>
+                                <input type="number" id="playerShooting" placeholder="Shooting" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerPassing" class="block mb-2">Passing</label>
+                                <input type="number" id="playerPassing" placeholder="Passing" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerDribbling" class="block mb-2">Dribbling</label>
+                                <input type="number" id="playerDribbling" placeholder="Dribbling" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerDefending" class="block mb-2">Defending</label>
+                                <input type="number" id="playerDefending" placeholder="Defending" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
+                            <div>
+                                <label for="playerPhysical" class="block mb-2">Physical</label>
+                                <input type="number" id="playerPhysical" placeholder="Physical" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div>
                         </div>
                     </div>
 
-
-                    <div class="flex flex-wrap">
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerName" class="block mb-1">Player Name:</label>
-                            <input type="text" id="playerName" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player name" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerPhoto" class="block mb-1">Player Photo:</label>
-                            <input type="text" id="playerPhoto" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="URL of the photo" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerNationalityFlag" class="block mb-1">Nationality Flag:</label>
-                            <input type="text" id="playerNationalityFlag" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="URL of the flag" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerClub" class="block mb-1">Club:</label>
-                            <input type="text" id="playerClub" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player club name" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerClubLogo" class="block mb-1">Logo:</label>
-                            <input type="text" id="playerClubLogo" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="URL of the club logo" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerRating" class="block mb-1">Rating:</label>
-                            <input type="number" id="playerRating" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player rating" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerDiving" class="block mb-1">Diving:</label>
-                            <input name="playerDiving" type="number" id="playerDiving" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player diving" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerHandling" class="block mb-1">Handling:</label>
-                            <input name="playerHandling" type="number" id="playerHandling" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player handling" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerKicking" class="block mb-1">Kicking:</label>
-                            <input name="playerKicking" type="number" id="playerKicking" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player kicking" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerReflexes" class="block mb-1">Reflexes:</label>
-                            <input name="playerReflexes" type="number" id="playerReflexes" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Payer reflexes" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerSpeed" class="block mb-1">Speed:</label>
-                            <input name="playerSpeed" type="number" id="playerSpeed" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player speed" required>
-                        </div>
-                        <div class="gk w-[50%] p-2" style="display: none;">
-                            <label for="playerPositioning" class="block mb-1">Positioning:</label>
-                            <input name="playerPositioning" type="number" id="playerPositioning" min="1" max="100" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Player positioning" required>
+                    <div id="gkFields" class="hidden">
+                        <div class="grid grid-cols-3 gap-2 mt-4">
+                            <div>
+                                <label for="playerDiving" class="block mb-2">Diving</label>
+                                <input type="number" id="playerDiving" placeholder="Diving" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded">
+                            </div>
+                            <div>
+                                <label for="playerHandling" class="block mb-2">Handling</label>
+                                <input type="number" id="playerHandling" placeholder="Handling" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded">
+                            </div>
+                            <div>
+                                <label for="playerKicking" class="block mb-2">Kicking</label>
+                                <input type="number" id="playerKicking" placeholder="Kicking" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded">
+                            </div>
+                            <div>
+                                <label for="playerReflexes" class="block mb-2">Reflexes</label>
+                                <input type="number" id="playerReflexes" placeholder="Reflexes" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded">
+                            </div>
+                            <div>
+                                <label for="playerSpeed" class="block mb-2">Speed</label>
+                                <input type="number" id="playerSpeed" placeholder="Speed" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded">
+                            </div>
+                            <div>
+                                <label for="playerPositioning" class="block mb-2">Positioning</label>
+                                <input type="number" id="playerPositioning" placeholder="Positioning" min="1" max="99" class="p-2 w-[100%] bg-gray-700 rounded">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-end gap-2">
-                        <button type="submit" class="text-[#000] bg-[#fff] rounded-[30px] p-3 hover:bg-gray-900 hover:text-[#fff]">Add Player</button>
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" id="cancelBtn" class="bg-gray-600 text-white px-4 py-2 rounded-full hover:bg-gray-900">Cancel</button>
+                        <button type="submit" class="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-900 hover:text-white">Add Player</button>
                     </div>
                 </form>
-            </div>
+            </section>
         </div>
-        
     </main>
+    
     <footer class="text-center py-4 bg-gray-900 text-gray-500 h-[200px]">
         <p class="pt-[80px]">© 2024 FUT Champions Squad Builder. All Rights Reserved.</p>
     </footer>

@@ -1,169 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&family=Pathway+Gothic+One&display=swap');
-
-* {
-    padding: 0; 
-    margin: 0; 
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Orbitron&display=swap');
+        
 body {
-    font-family: "Didact Gothic", sans-serif;
-    background: #122135;
+    font-family: 'Didact Gothic', sans-serif;
+    background-color: #122135;
     color: #fff;
 }
 
-/* Mobile */
-@media (min-width: 768px) {
-    #nav_btn {
-        display: block;
-    }
-
-    .stadium {
-        background-image: url('./src/assets/img/stadium.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 80%;
-        width: 100%;
-        border-radius: 50px;
-    }
-
-    #attackPlayer {
-        display: flex;
-        justify-content: space-around;
-        width: 550px;
-        padding-top: 100px;
-    }
-
-    #centerPlayer {
-        display: flex;
-        justify-content: space-around;
-        width: 750px;
-        padding-top: 0px;
-    }
-    
-    #defencePlayer {
-        display: flex;
-        justify-content: space-between;
-        width: 750px;
-        padding-top: 0px;
-    }
-    
-    #golePlayer {
-        display: flex;
-        justify-content: center;
-        padding-top: 0px;
-    }
-    
-    .pl {
-        /* background-image: url("/src/assets/img/badge_gold.webp"); */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
-    }
-
-    .pl:hover {
-        z-index: 1;
-        transform: scale(1.5);
-        filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
+.stadium {
+    background-image: url('./src/assets/img/stadium.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50px;
 }
+
+.player-slot {
+    position: relative;
+    background-image: url("./src/assets/img/gold.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 190px;
+    width: 150px;
+    transition: transform 0.3s ease-in-out;
 }
-/* tablet */
-@media (min-width: 995px) {
-    .stadium {
-        background-image: url('./src/assets/img/stadium.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100%;
-        width: 100%;
-    }
 
-    .pl {
-        /* background-image: url("/src/assets/img/badge_gold.webp"); */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
-    }
-
-    .pl:hover {
-        z-index: 1;
-        transform: scale(1.5);
-        filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
-    }
+.player-slot:hover {
+    transform: scale(1.5);
+    z-index: 10;
+    filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
 }
-/* desktop */
-@media (min-width: 1200px) {
-    #nav_btn {
-        display: none;
-    }
 
-    #playerContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.player-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
-    .stadium {
-        background-image: url('./src/assets/img/stadium.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 800px;
-        height: 100%;
-        width: 100%;
-    }
-
-    #attackPlayer {
-        display: flex;
-        justify-content: space-around;
-        width: 530px;
-        padding-top: 250px;
-    }
-    
-    #centerPlayer {
-        display: flex;
-        justify-content: space-around;
-        width: 800px;
-        padding-top: 0px;
-    }
-    
-    #defencePlayer {
-        display: flex;
-        justify-content: space-between;
-        width: 800px;
-        padding-top: 0px;
-    }
-    
-    #golePlayer {
-        display: flex;
-        justify-content: center;
-        padding-top: 0px;
-    }
-
-    .pl {
-        /* background-image: url("/src/assets/img/badge_gold.webp"); */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 190px;
-        width: 150px;
-        transform: scale(1);
-        transition: .3s ease-in-out;
-    }
-
-    .pl:hover {
-        z-index: 1;
-        transform: scale(1.5);
-        filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
-    }
+.player-card img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
 }
