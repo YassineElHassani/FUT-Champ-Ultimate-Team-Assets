@@ -25,21 +25,29 @@ document.addEventListener('DOMContentLoaded', () => {
     playerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const position = playerPosition.value;
-        const playerSlot = document.querySelector(`.${position}`);
-
+        const playerSlots = document.querySelectorAll(`.${position}`);
+        let playerSlot = null;
+    
+        for (const slot of playerSlots) {
+            if (!slot.hasChildNodes()) {
+                playerSlot = slot;
+                break;
+            }
+        }
+    
         if (!playerSlot) {
-            alert('Invalid position selected');
+            alert(`The ${position} slot is already existing`);
             return;
         }
-
+    
         const playerCard = document.createElement('div');
-        playerCard.className = 'player-card w-full h-full flex flex-col items-center justify-center';
+        playerCard.className = 'playerCard w-full h-full flex flex-col items-center justify-center';
         playerCard.style.backgroundImage = 'url(./src/assets/img/gold.png)';
-
+    
         const playerRating = document.getElementById('playerRating').value;
         const playerPhoto = document.getElementById('playerPhoto').value;
         const playerName = document.getElementById('playerName').value;
-
+    
         if (position === 'GK') {
             const playerDiving = document.getElementById('playerDiving').value;
             const playerHandling = document.getElementById('playerHandling').value;
@@ -47,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const playerReflexes = document.getElementById('playerReflexes').value;
             const playerSpeed = document.getElementById('playerSpeed').value;
             const playerPositioning = document.getElementById('playerPositioning').value;
-
+    
             playerCard.innerHTML = `
                 <p class="absolute top-6 left-5 text-black">${position}</p>
                 <p class="absolute top-10 left-5 text-red-600">${playerRating}</p>
@@ -61,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div><p class="text-[7px] text-black">SPE</p><p class="text-[8px] text-red-600">${playerSpeed}</p></div>
                     <div><p class="text-[7px] text-black">POS</p><p class="text-[8px] text-red-600">${playerPositioning}</p></div>
                 </div>
-                `;
+            `;
         } else {
             const playerPace = document.getElementById('playerPace').value;
             const playerShooting = document.getElementById('playerShooting').value;
@@ -69,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const playerDribbling = document.getElementById('playerDribbling').value;
             const playerDefending = document.getElementById('playerDefending').value;
             const playerPhysical = document.getElementById('playerPhysical').value;
-        
+    
             playerCard.innerHTML = `
                 <p class="absolute top-6 left-5 text-black">${position}</p>
                 <p class="absolute top-10 left-5 text-red-600">${playerRating}</p>
@@ -82,13 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div><p class="text-[7px] text-black">DRI</p><p class="text-[8px] text-red-600">${playerDribbling}</p></div>
                     <div><p class="text-[7px] text-black">DEF</p><p class="text-[8px] text-red-600">${playerDefending}</p></div>
                     <div><p class="text-[7px] text-black">PHY</p><p class="text-[8px] text-red-600">${playerPhysical}</p></div>
-                </div>`;
+                </div>
+            `;
         }
-
+    
         playerSlot.innerHTML = '';
         playerSlot.appendChild(playerCard);
-
+    
         playerFormContainer.classList.add('hidden');
         playerForm.reset();
     });
+    
 });

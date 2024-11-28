@@ -14,7 +14,7 @@ body {
     border-radius: 50px;
 }
 
-.player-slot {
+.playerSlot {
     position: relative;
     background-image: url("./src/assets/img/gold.png");
     background-size: cover;
@@ -25,20 +25,20 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-.player-slot:hover {
+.playerSlot:hover {
     transform: scale(1.5);
     z-index: 10;
     filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
 }
 
-.player-card {
+.playerCard {
     position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.player-card img {
+.playerCard img {
     max-width: 100px;
     max-height: 100px;
     object-fit: contain;
