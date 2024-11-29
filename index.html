@@ -14,32 +14,32 @@
             <img src="./src/assets/img/logo.png" alt="Logo" class="h-12 w-12">
             <h1 class="text-xl font-orbitron text-[#94a3b8]">Champions Squad Builder</h1>
         </div>
-        <button id="addPlayerBtn" class="bg-[#122135] text-[#94a3b8] rounded-full px-4 py-2 hover:bg-white hover:text-black">
+        <button id="addPlayerBtn" class="bg-gray-100 text-[#000] rounded-full px-4 py-2 hover:bg-gray-700 hover:text-white">
             Add Player
         </button>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <div class="grid md:grid-cols-[2fr,1fr] gap-8">
+    <main class="container mx-auto py-8">
+        <div class="grid md:grid-cols-[2fr,1fr] gap-8 items-center justify-center">
             <section class="stadium p-4">
-                <div class="flex flex-col items-center">
+                <div id="drag" class="flex flex-col items-center" style="margin-bottom: 20px;">
                     <div id="attackPlayer">
                         <div class="playerSlot LF"></div>
                         <div class="playerSlot ST"></div>
                         <div class="playerSlot RF"></div>
                     </div>
                     <div id="midPlayer">
-                        <div class="playerSlot CM"></div>
+                        <div class="playerSlot LCM"></div>
                         <div class="playerSlot CAM"></div>
-                        <div class="playerSlot CM"></div>
+                        <div class="playerSlot RCM"></div>
                     </div>
                     <div id="defencePlayer">
                         <div style="display: flex; justify-content: space-around; width: 100%;">
                             <div class="playerSlot LB"></div>
-                            <div class="playerSlot CB"></div>
+                            <div class="playerSlot LCB"></div>
                         </div>
                         <div style="display: flex; justify-content: space-around; width: 100%;">
-                            <div class="playerSlot CB"></div>
+                            <div class="playerSlot RCB"></div>
                             <div class="playerSlot RB"></div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                 </div>
             </section>
 
-            <section id="playerFormContainer" class="hidden bg-gray-800 rounded-[50px] p-6">
+            <section id="playerFormContainer" class="hidden bg-gray-600 h-[100%] rounded-[50px] p-6">
                 <form id="playerForm" class="space-y-4" action="submit" method="post">
                     <h2 class="text-xl font-bold mb-4">Add Player</h2>
 
@@ -58,30 +58,112 @@
                         <select id="playerPosition" class="w-full p-2 bg-gray-700 rounded" required>
                             <option value="">Select Position</option>
                             <option value="GK">Goalkeeper</option>
-                            <option value="CB">Center Back</option>
                             <option value="LB">Left Back</option>
+                            <option value="LCB">Left Center Back</option>
+                            <option value="RCB">Right Center Back</option>
                             <option value="RB">Right Back</option>
-                            <option value="CM">Central Midfielder</option>
+                            <option value="LCM">Left Central Midfielder</option>
                             <option value="CAM">Central Attacking Midfielder</option>
-                            <option value="ST">Striker</option>
+                            <option value="RCM">Right Central Midfielder</option>
                             <option value="LF">Left Forward</option>
+                            <option value="ST">Striker</option>
                             <option value="RF">Right Forward</option>
                         </select>
+                          
+                        <div>
+                            <label for="playerName" class="block mb-2">Player Name</label>
+                            <input type="text" id="playerName" placeholder="Player Name" class="w-full p-2 bg-gray-700 rounded" required>
+                        </div>
                     </div>
 
                     <div id="standardFields">
                         <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label for="playerName" class="block mb-2">Player Name</label>
-                                <input type="text" id="playerName" placeholder="Player Name" class="p-2 w-[100%] bg-gray-700 rounded" required>
+
+                            <div class="form-group">
+                                <label for="playerNationality" class="block mb-2">Nationality</label>
+                                <select id="playerNationality" name="nationality" placeholder="Club" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                                    <option value="">Select a Country</option>
+                                    <option value="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg">Brazil</option>
+                                    <option value="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg">Argentina</option>
+                                    <option value="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg">Germany</option>
+                                    <option value="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg">Spain</option>
+                                    <option value="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg">France</option>
+                                    <option value="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg">Italy</option>
+                                    <option value="https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg">Morocco</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/14.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=fd61715cd36adf0e87e417376744e767">England</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/38.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=f9463fd3973965923de9e8945e9ca0fe">Portugal</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/47.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=42fcb74d34c4bb16d05691a577fce8b7">Switzerland</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/7.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=d637d192ddd27cedb47b9fe38b6ff092">Belgium</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/95.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=0b702fb25c991ab4f69369531d597a86">United States</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/10.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=e9e638ef1ccc508be6ac23d7accd7d51">Croatia</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/46.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=598da3c78c1c9d271fba1dd450958a42">Sweden</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/56.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=27a700cd51ff8951cdbafbcddae33711">Colombia</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/83.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=c79296acc36d91c1e27b0b470c3de354">Mexico</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/60.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=cce947ae4eba3db3eb30df2232bdc3aa">Uruguay</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/55.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=5dc0c902ead8f292527e616605cdcbdf">Chile</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/13.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=8cbde4f0113f7c7388cf72224126d00b">Denmark</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/nation/163.png?fm=png&amp;ixlib=java-2.1.0&amp;w=70&amp;s=bfa014f8ed2b28e2d96c3345021a153f">Japan</option>
+                                </select>
                             </div>
-                            <div>
+                            <div class="form-group">
                                 <label for="playerClub" class="block mb-2">Club</label>
-                                <input type="text" id="playerClub" placeholder="Club" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                                <select id="playerClub" name="club" placeholder="Club" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                                    <option value="">Select a Club</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/241.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=2e69666cf40b727b95e8a7d9c6f826c0">FC Barcelona</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/11.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=d634f823d355069c2550a1af0508d0b6">Manchester United</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/243.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=bb98e3479ba0959fdb7031ce0834fc3f">Real Madrid</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/240.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=c11cce2f95472cd8029518f50f33b072">Atlético de Madrid</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/1.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=0f5f1b415788c03a743b0d898ccba3af">Arsenal</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/21.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=e3b8047ca7192b7dcb2ea63bd0d03ce8">Bayern Munich</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/45.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=f1f8808346246870756ad5d8228e986d">Juventus</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/5.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=a95904bd7ea09c4e68243f801a89bf88">Chelsea</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/73.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=0f38a396c70909e8d42f5c5df7106dfc">PSG</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/47.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=a9067499062a84a811320e43ab18a7ab">AC Milan</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/9.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=57ffc54f58dce3d534f1cc8447eb70c6">Liverpool</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/10.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=95cbb451617b845465701b79e8fbc3a7">Manchester City</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/112893.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=d485e05543c5221ff56faa5e1ab9c844">Inter Milan</option> 
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/17.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=af314b5587c3cc402cd40784e876a447">Southampton</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/22.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=610202ab57221514d872d7c05d922e1e">Borussia Dortmund</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/112172.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=c02e0780a50292d3f495e7feade1a040">RB Leipzig</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/34.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=56cd24df37579679f62b698ac3ae43a6">Schalke 04</option>
+                                    <option value="https://cdn3.futbin.com/content/fifa25/img/clubs/dark/52.png?fm=png&amp;ixlib=java-2.1.0&amp;verzion=2&amp;w=256&amp;s=2064ddd0b6eb32fdae1b1b4f4338abdc">AS Roma</option>
+                                </select>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <label for="playerPhoto" class="block mb-2">Photo URL</label>
                                 <input type="url" id="playerPhoto" placeholder="Photo URL" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                            </div> -->
+                            <div>
+                                <label for="playerPhoto" class="block mb-2">Photo URL</label>
+                                <select id="playerPhoto" placeholder="Photo URL" class="p-2 w-[100%] bg-gray-700 rounded" required>
+                                    <option value="">Select a photo</option>
+                                    <option value="https://cdn.sofifa.net/players/158/023/25_120.png">photo 1</option>
+                                    <option value="https://cdn.sofifa.net/players/020/801/25_120.png">photo 2</option>
+                                    <option value="https://cdn.sofifa.net/players/192/985/25_120.png">photo 3</option>
+                                    <option value="https://cdn.sofifa.net/players/231/747/25_120.png">photo 4</option>
+                                    <option value="https://cdn.sofifa.net/players/203/376/25_120.png">photo 5</option>
+                                    <option value="https://cdn.sofifa.net/players/205/452/25_120.png">photo 6</option>
+                                    <option value="https://cdn.sofifa.net/players/190/871/25_120.png">photo 7</option>
+                                    <option value="https://cdn.sofifa.net/players/192/985/25_120.png">photo 8</option>
+                                    <option value="https://cdn.sofifa.net/players/212/622/25_120.png">photo 9</option>
+                                    <option value="https://cdn.sofifa.net/players/200/389/25_120.png">photo 10</option>
+                                    <option value="https://cdn.sofifa.net/players/177/003/25_120.png">photo 11</option>
+                                    <option value="https://cdn.sofifa.net/players/238/794/25_120.png">photo 12</option>
+                                    <option value="https://cdn.sofifa.net/players/231/410/25_120.png">photo 13</option>
+                                    <option value="https://cdn.sofifa.net/players/165/153/25_120.png">photo 14</option>
+                                    <option value="https://cdn.sofifa.net/players/239/085/25_120.png">photo 15</option>
+                                    <option value="https://cdn.sofifa.net/players/215/914/25_120.png">photo 16</option>
+                                    <option value="https://cdn.sofifa.net/players/234/396/25_120.png">photo 17</option>
+                                    <option value="https://cdn.sofifa.net/players/209/981/25_120.png">photo 18</option>
+                                    <option value="https://cdn.sofifa.net/players/212/198/25_120.png">photo 19</option>
+                                    <option value="https://cdn.sofifa.net/players/233/049/25_120.png">photo 20</option>
+                                    <option value="https://cdn.sofifa.net/players/231/281/25_120.png">photo 21</option>
+                                    <option value="https://cdn.sofifa.net/players/235/212/25_120.png">photo 22</option>
+                                    <option value="https://cdn.sofifa.net/players/235/410/25_120.png">photo 23</option>
+                                    <option value="https://cdn.sofifa.net/players/236/401/25_120.png">photo 24</option>
+                                    <option value="https://cdn.sofifa.net/players/259/480/25_120.png">photo 25</option>
+                                    <option value="https://cdn.sofifa.net/players/230/621/25_120.png">photo 26</option>
+                                </select>
                             </div>
                             <div>
                                 <label for="playerRating" class="block mb-2">Rating</label>
@@ -147,10 +229,35 @@
                     </div>
 
                     <div class="flex justify-end space-x-2">
-                        <button type="button" id="cancelBtn" class="bg-gray-600 text-white px-4 py-2 rounded-full hover:bg-gray-900">Cancel</button>
-                        <button type="submit" class="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-900 hover:text-white">Add Player</button>
+                        <button type="button" id="cancelBtn" class="bg-gray-500 text-white px-4 py-2 rounded-full hover:bg-gray-900">Cancel</button>
+                        <button type="submit" id="submitBtn" class="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-700 hover:text-white">Add Player</button>
                     </div>
                 </form>
+            </section>
+
+            <!-- <div id="dragSection" class="bg-gray-800 h-[100%] rounded-[50px] p-12 flex wrap gap-12 justify-center">
+                <p class="text-gray-600">Drag players here</p>
+            </div> -->
+
+            <section class="bg-gray-800 h-[100%] rounded-[50px] p-12 flex wrap gap-12 justify-center">
+                
+                <div class="gap-12">
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                </div>
+                <div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                    <div class="playerSlot reserve"></div>
+                </div>
+
             </section>
         </div>
     </main>

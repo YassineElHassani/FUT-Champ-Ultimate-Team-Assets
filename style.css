@@ -2,7 +2,8 @@
         
 body {
     font-family: 'Didact Gothic', sans-serif;
-    background-color: #122135;
+    background: rgb(2,0,36);
+    background: linear-gradient(195deg, rgb(11, 7, 85) 0%, rgba(9,9,121,1) 35%, rgb(0, 89, 255) 100%);
     color: #fff;
 }
 
@@ -89,9 +90,9 @@ body {
 }
 
 .playerSlot:hover {
-    transform: scale(1.5);
+    transform: scale(1.8);
     z-index: 10;
-    filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));
+    filter: drop-shadow(0 0 0.75rem rgb(20, 220, 70));  
 }
 
 .playerCard {
@@ -105,4 +106,47 @@ body {
     max-width: 100px;
     max-height: 100px;
     object-fit: contain;
+}
+
+.crudBtn {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 110%;
+}
+
+.edit {
+    display: none;
+    background-color: beige;
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.edit:hover {
+    transform: scale(1.5);
+}
+
+.delete {
+    display: none;
+    background-color: black;
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.delete:hover {
+    transform: scale(1.5);
+}
+
+.playerSlot:hover .edit {
+    display: block;
+}
+
+.playerSlot:hover .delete {
+    display: block;
 }

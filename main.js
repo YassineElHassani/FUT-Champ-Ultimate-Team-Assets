@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const standardPlayer = document.getElementById('standardPlayer');
     const gkFields = document.getElementById('gkFields');
     const cancelBtn = document.getElementById('cancelBtn');
+    const submitBtn = document.getElementById('submitBtn');
 
     addPlayerBtn.addEventListener('click', () => {
         playerFormContainer.classList.remove('hidden');
@@ -25,30 +26,52 @@ document.addEventListener('DOMContentLoaded', () => {
     playerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const position = playerPosition.value;
-        
-        const playerSlots = document.querySelectorAll(`.${position}`);
-        let playerSlot = null;
-    
-        for (const slot of playerSlots) {
-            if (slot.childElementCount === 0) {
-                playerSlot = slot;
-                break;
-            }
-        }
-        
+
+        const playerSlot = document.querySelector(`.${position}`);
 
         if (!playerSlot) {
-            alert(`The ${position} slot is already existing`);
+            alert('Invalid position selected');
             return;
         }
+
+        // const playerSlots = document.querySelectorAll(`.${position}`);
+        // let playerSlot = null;
     
-        const playerCard = document.createElement('div');
-        playerCard.className = 'playerCard w-full h-full flex flex-col items-center justify-center';
-        playerCard.style.backgroundImage = 'url(./src/assets/img/rttk.png)';
+        // for (const slot of playerSlots) {
+        //     if (slot.childElementCount === 0) {
+        //         playerSlot = slot;
+        //         break;
+        //     }
+        // }
+        
+
+        // if (!playerSlot) {
+        //     alert(`The ${position} slot is already existing`);
+        //     return;
+        // }
     
         const playerRating = document.getElementById('playerRating').value;
         const playerPhoto = document.getElementById('playerPhoto').value;
         const playerName = document.getElementById('playerName').value;
+        const playerNationality = document.getElementById('playerNationality').value;
+        const playerClub = document.getElementById('playerClub').value;
+
+        const playerCard = document.createElement('div');
+        playerCard.className = 'playerCard w-full h-full flex flex-col items-center justify-center';
+
+        if(playerRating >= 90)  {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/badge_total_rush.png)'
+        } else if (playerRating >= 70) {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/centurions.png)';
+        } else if (playerRating >= 60) {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/rttk.png)';
+        } else if (playerRating >= 50) {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/ballon_dor.png)';
+        } else if (playerRating >= 30) {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/bronze.png)';
+        } else if (playerRating <= 20 ) {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/silver.png)';
+        }
     
         if (position === 'GK') {
             const playerDiving = document.getElementById('playerDiving').value;
@@ -57,16 +80,78 @@ document.addEventListener('DOMContentLoaded', () => {
             const playerReflexes = document.getElementById('playerReflexes').value;
             const playerSpeed = document.getElementById('playerSpeed').value;
             const playerPositioning = document.getElementById('playerPositioning').value;
+
+            const crudBtnDiv = document.createElement('div');
+            crudBtnDiv.className = 'crudBtn';
+
+            const editButton = document.createElement('button');
+            editButton.className = 'edit';
+            editButton.setAttribute('type', 'button');
+            editButton.textContent = '✏️';
+
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete';
+            editButton.setAttribute('type', 'button');
+            deleteButton.textContent = '❌';
+            
+            editButton.addEventListener('click', function() {
+                playerFormContainer.classList.remove('hidden');
+
+                document.getElementById('playerPosition').value = position;
+                document.getElementById('playerName').value = playerName;
+                document.getElementById('playerNationality').value = playerNationality;
+                document.getElementById('playerClub').value = playerClub;
+                document.getElementById('playerPhoto').value = playerPhoto;
+                document.getElementById('playerRating').value = playerRating;
+                document.getElementById('playerDiving').value = playerDiving;
+                document.getElementById('playerHandling').value = playerHandling;
+                document.getElementById('playerKicking').value = playerKicking;
+                document.getElementById('playerReflexes').value = playerReflexes;
+                document.getElementById('playerSpeed').value = playerSpeed;
+                document.getElementById('playerPositioning').value = playerPositioning;
+
+                submitBtn.textContent = 'Save;'
+                
+                submitBtn.addEventListener('click', function() {
+                    playerCard.remove();
+                    playerFormContainer.reset();
+                });
+            });
+
+            deleteButton.addEventListener('click', function() {
+                playerCard.remove();
+            });
+
+            crudBtnDiv.appendChild(editButton);
+            crudBtnDiv.appendChild(deleteButton);
+            playerCard.appendChild(crudBtnDiv);
         
             const pos = document.createElement('p');
             pos.className = 'absolute top-6 left-5 text-white';
+            pos.style.marginTop = '5px';
             pos.textContent = position;
             playerCard.appendChild(pos);
         
             const rating = document.createElement('p');
             rating.className = 'absolute top-10 left-5 text-amber-400';
+            rating.style.marginTop = '5px';
             rating.textContent = playerRating;
             playerCard.appendChild(rating);
+
+            const club = document.createElement('img');
+            club.src = playerClub;
+            club.className = 'absolute top-20 right-5';
+            club.height = 9;
+            club.width = 25;
+            playerCard.appendChild(club);
+
+            const nationality = document.createElement('img');
+            nationality.src = playerNationality;
+            nationality.className = 'absolute top-10 right-5';
+            nationality.height = 9;
+            nationality.width = 25;
+            playerCard.appendChild(nationality);
         
             const img = document.createElement('img');
             img.src = playerPhoto;
@@ -86,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
             const container = document.createElement('div');
             container.className = 'flex justify-center gap-1';
-            container.style.marginBottom = '5px';
+            container.style.marginBottom = '15px';
         
             const attributes = [
                 { label: 'DIV', value: playerDiving },
@@ -121,16 +206,78 @@ document.addEventListener('DOMContentLoaded', () => {
             const playerDribbling = document.getElementById('playerDribbling').value;
             const playerDefending = document.getElementById('playerDefending').value;
             const playerPhysical = document.getElementById('playerPhysical').value;
+
+            const crudBtnDiv = document.createElement('div');
+            crudBtnDiv.className = 'crudBtn';
+
+            const editButton = document.createElement('button');
+            editButton.className = 'edit';
+            editButton.setAttribute('type', 'button');
+            editButton.textContent = '✏️';
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete';
+            editButton.setAttribute('type', 'button');
+            deleteButton.textContent = '❌';
+
+            editButton.addEventListener('click', function() {
+                playerFormContainer.classList.remove('hidden');
+
+                document.getElementById('playerPosition').value = position;
+                document.getElementById('playerName').value = playerName;
+                document.getElementById('playerNationality').value = playerNationality;
+                document.getElementById('playerClub').value = playerClub;
+                document.getElementById('playerPhoto').value = playerPhoto;
+                document.getElementById('playerRating').value = playerRating;
+                document.getElementById('playerPace').value = playerPace;
+                document.getElementById('playerShooting').value = playerShooting;
+                document.getElementById('playerPassing').value = playerPassing;
+                document.getElementById('playerDribbling').value = playerDribbling;
+                document.getElementById('playerDefending').value = playerDefending;
+                document.getElementById('playerPhysical').value = playerPhysical;
+
+                submitBtn.textContent = 'Save';
+                
+                
+                submitBtn.addEventListener('click', function() {
+                    playerCard.remove();
+                    playerFormContainer.reset();
+                });
+            });
+
+            deleteButton.addEventListener('click', function() {
+                playerCard.remove();
+            });
+
+            crudBtnDiv.appendChild(editButton);
+            crudBtnDiv.appendChild(deleteButton);
+            playerCard.appendChild(crudBtnDiv);
         
             const pos = document.createElement('p');
             pos.className = 'absolute top-6 left-5 text-white';
+            pos.style.marginTop = '5px';
             pos.textContent = position;
             playerCard.appendChild(pos);
         
             const rating = document.createElement('p');
             rating.className = 'absolute top-10 left-5 text-amber-400';
+            rating.style.marginTop = '5px';
             rating.textContent = playerRating;
             playerCard.appendChild(rating);
+
+            const club = document.createElement('img');
+            club.src = playerClub;
+            club.className = 'absolute top-20 right-5';
+            club.height = 9;
+            club.width = 25;
+            playerCard.appendChild(club);
+
+            const nationality = document.createElement('img');
+            nationality.src = playerNationality;
+            nationality.className = 'absolute top-10 right-5';
+            nationality.height = 9;
+            nationality.width = 25;
+            playerCard.appendChild(nationality);
         
             const img = document.createElement('img');
             img.src = playerPhoto;
@@ -150,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
             const container = document.createElement('div');
             container.className = 'flex justify-center gap-1';
-            container.style.marginBottom = '5px';
+            container.style.marginBottom = '15px';
         
             const attributes = [
                 { label: 'PAC', value: playerPace },
