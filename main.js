@@ -27,28 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const position = playerPosition.value;
 
-        const playerSlot = document.querySelector(`.${position}`);
+        let playerSlot = document.querySelector(`.${position}`);
 
-        if (!playerSlot) {
-            alert('Invalid position selected');
-            return;
+        if (playerSlot && playerSlot.children.length > 0) {
+            const reserveSlots = document.querySelectorAll('.reserve');
+            playerSlot = Array.from(reserveSlots).find(slot => slot.children.length === 0);
         }
-
-        // const playerSlots = document.querySelectorAll(`.${position}`);
-        // let playerSlot = null;
-    
-        // for (const slot of playerSlots) {
-        //     if (slot.childElementCount === 0) {
-        //         playerSlot = slot;
-        //         break;
-        //     }
-        // }
-        
-
-        // if (!playerSlot) {
-        //     alert(`The ${position} slot is already existing`);
-        //     return;
-        // }
     
         const playerRating = document.getElementById('playerRating').value;
         const playerPhoto = document.getElementById('playerPhoto').value;
@@ -60,16 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
         playerCard.className = 'playerCard w-full h-full flex flex-col items-center justify-center';
 
         if(playerRating >= 90)  {
-            playerCard.style.backgroundImage = 'url(./src/assets/img/badge_total_rush.png)'
-        } else if (playerRating >= 70) {
             playerCard.style.backgroundImage = 'url(./src/assets/img/centurions.png)';
-        } else if (playerRating >= 60) {
-            playerCard.style.backgroundImage = 'url(./src/assets/img/rttk.png)';
-        } else if (playerRating >= 50) {
+        } else if (playerRating >= 75) {
             playerCard.style.backgroundImage = 'url(./src/assets/img/ballon_dor.png)';
-        } else if (playerRating >= 30) {
+        } else if (playerRating >= 60) {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/badge_total_rush.png)';
+        } else if (playerRating >= 45) {
+            playerCard.style.backgroundImage = 'url(./src/assets/img/rttk.png)';
+        } else if (playerRating >= 25) {
             playerCard.style.backgroundImage = 'url(./src/assets/img/bronze.png)';
-        } else if (playerRating <= 20 ) {
+        } else if (playerRating >= 0 ) {
             playerCard.style.backgroundImage = 'url(./src/assets/img/silver.png)';
         }
     
@@ -111,11 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('playerSpeed').value = playerSpeed;
                 document.getElementById('playerPositioning').value = playerPositioning;
 
-                submitBtn.textContent = 'Save;'
+                submitBtn.textContent = 'Save';
                 
                 submitBtn.addEventListener('click', function() {
                     playerCard.remove();
-                    playerFormContainer.reset();
+                    submitBtn.textContent = 'Add Player';
                 });
             });
 
@@ -241,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 submitBtn.addEventListener('click', function() {
                     playerCard.remove();
-                    playerFormContainer.reset();
+                    submitBtn.textContent = 'Add Player';
                 });
             });
 
