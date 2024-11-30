@@ -112,34 +112,36 @@ document.addEventListener('DOMContentLoaded', () => {
             playerCard.appendChild(crudBtnDiv);
         
             const pos = document.createElement('p');
-            pos.className = 'absolute top-6 left-5 text-white';
+            pos.className = 'posStyle absolute top-6 left-5 text-white';
             pos.style.marginTop = '5px';
+            pos.style.fontWeight = 'bold';
             pos.textContent = position;
             playerCard.appendChild(pos);
         
             const rating = document.createElement('p');
-            rating.className = 'absolute top-10 left-5 text-amber-400';
+            rating.className = 'ratingStyle absolute top-10 left-5 text-amber-400';
             rating.style.marginTop = '5px';
+            rating.style.fontWeight = 'bold';
             rating.textContent = playerRating;
             playerCard.appendChild(rating);
 
             const club = document.createElement('img');
             club.src = playerClub;
-            club.className = 'absolute top-20 right-5';
+            club.className = 'imgClub absolute top-20 right-5';
             club.height = 9;
             club.width = 25;
             playerCard.appendChild(club);
 
             const nationality = document.createElement('img');
             nationality.src = playerNationality;
-            nationality.className = 'absolute top-10 right-5';
+            nationality.className = 'imgNation absolute top-10 right-5';
             nationality.height = 9;
             nationality.width = 25;
             playerCard.appendChild(nationality);
         
             const img = document.createElement('img');
             img.src = playerPhoto;
-            img.className = 'mt-7';
+            img.className = 'img mt-7';
             img.height = 120;
             img.width = 95;
             const imgCenter = document.createElement('center');
@@ -147,8 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
             playerCard.appendChild(imgCenter);
         
             const name = document.createElement('p');
-            name.className = 'text-[12px] text-white';
+            name.className = 'nameStyle text-[12px] text-white';
             name.textContent = playerName;
+            name.style.fontWeight = 'bold';
             const nameCenter = document.createElement('center');
             nameCenter.appendChild(name);
             playerCard.appendChild(nameCenter);
@@ -169,12 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
             attributes.forEach(attr => {
                 const infoContainer = document.createElement('div');
                 const text = document.createElement('p');
-                text.className = 'text-[7px] text-white';
+                text.className = 'infoStyle text-[7px] text-white';
                 text.textContent = attr.label;
+                text.style.fontWeight = 'bold';
         
                 const textValue = document.createElement('p');
-                textValue.className = 'text-[8px] text-amber-400';
+                textValue.className = 'infoValStyle text-[8px] text-amber-400';
                 textValue.textContent = attr.value;
+                textValue.style.fontWeight = 'bold';
         
                 infoContainer.appendChild(text);
                 infoContainer.appendChild(textValue);
@@ -238,34 +243,36 @@ document.addEventListener('DOMContentLoaded', () => {
             playerCard.appendChild(crudBtnDiv);
         
             const pos = document.createElement('p');
-            pos.className = 'absolute top-6 left-5 text-white';
+            pos.className = 'posStyle absolute top-6 left-5 text-white';
             pos.style.marginTop = '5px';
+            pos.style.fontWeight = 'bold';
             pos.textContent = position;
             playerCard.appendChild(pos);
         
             const rating = document.createElement('p');
-            rating.className = 'absolute top-10 left-5 text-amber-400';
+            rating.className = 'ratingStyle absolute top-10 left-5 text-amber-400';
             rating.style.marginTop = '5px';
+            rating.style.fontWeight = 'bold';
             rating.textContent = playerRating;
             playerCard.appendChild(rating);
 
             const club = document.createElement('img');
             club.src = playerClub;
-            club.className = 'absolute top-20 right-5';
+            club.className = 'imgClub absolute top-20 right-5';
             club.height = 9;
             club.width = 25;
             playerCard.appendChild(club);
 
             const nationality = document.createElement('img');
             nationality.src = playerNationality;
-            nationality.className = 'absolute top-10 right-5';
+            nationality.className = 'imgNation absolute top-10 right-5';
             nationality.height = 9;
             nationality.width = 25;
             playerCard.appendChild(nationality);
         
             const img = document.createElement('img');
             img.src = playerPhoto;
-            img.className = 'mt-7';
+            img.className = 'img mt-7';
             img.height = 120;
             img.width = 95;
             const imgCenter = document.createElement('center');
@@ -273,8 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
             playerCard.appendChild(imgCenter);
         
             const name = document.createElement('p');
-            name.className = 'text-[12px] text-white';
+            name.className = 'nameStyle text-[12px] text-white';
             name.textContent = playerName;
+            name.style.fontWeight = 'bold';
             const nameCenter = document.createElement('center');
             nameCenter.appendChild(name);
             playerCard.appendChild(nameCenter);
@@ -294,16 +302,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
             attributes.forEach(attr => {
                 const infoContainer = document.createElement('div');
-                const labelElement = document.createElement('p');
-                labelElement.className = 'text-[7px] text-white';
-                labelElement.textContent = attr.label;
+                const text = document.createElement('p');
+                text.className = 'infoStyle text-[7px] text-white';
+                text.textContent = attr.label;
+                text.style.fontWeight = 'bold';
         
-                const valueElement = document.createElement('p');
-                valueElement.className = 'text-[8px] text-amber-400';
-                valueElement.textContent = attr.value;
+                const textValue = document.createElement('p');
+                textValue.className = 'infoValStyle text-[8px] text-amber-400';
+                textValue.textContent = attr.value;
+                textValue.style.fontWeight = 'bold';
         
-                infoContainer.appendChild(labelElement);
-                infoContainer.appendChild(valueElement);
+                infoContainer.appendChild(text);
+                infoContainer.appendChild(textValue);
                 container.appendChild(infoContainer);
             });
         

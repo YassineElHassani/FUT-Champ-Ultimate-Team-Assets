@@ -5,77 +5,60 @@ body {
     background: rgb(2,0,36);
     background: linear-gradient(195deg, rgb(11, 7, 85) 0%, rgba(9,9,121,1) 35%, rgb(0, 89, 255) 100%);
     color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .stadium {
-    background-image: url('./src/assets/img/stadium.png');
+    background-image: url('./src/assets/img/football_field_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
+    border: 2px rgb(0, 68, 255) solid;
     border-radius: 50px;
 }
 
 #attackPlayer {
+    position: absolute;
     display: flex;
     justify-content: space-between;
-    width: 70%;
-    margin-top: 350px;
-
+    width: 50%;
+    margin-top: 110px;
 }
 
-#attackPlayer .LF {
-    margin-top: 50px;
+#attackPlayer .LF, .RF {
+    margin-top: 30px;
 }
 
-#attackPlayer .ST {
-    margin-bottom: 50px;
-
-}
-
-#attackPlayer .RF {
-    margin-top: 50px;
-}
 
 #midPlayer {
     display: flex;
     justify-content: space-between;
-    width: 85%;
+    width: 70%;
+    margin-top: 290px;
 }
 
-#midPlayer .CM {
+#midPlayer .LCM, .RCM {
     margin-top: 50px;
-}
-
-#midPlayer .CAM {
-    margin-bottom: 50px;
 }
 
 #defencePlayer {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
 }
 
-#defencePlayer .LB {
+#defencePlayer .LB, .RB {
     margin-top: 50px;
 }
 
-#defencePlayer .RB {
-    margin-top: 50px;
-}
-
-#defencePlayer .CB {
-    margin-bottom: 50px;
-}
 
 #gkPlayer {
     display: flex;
     justify-content: center;
-    margin-bottom: 90px;
-}
-
-#gkPlayer .GK {
-    margin-bottom: 0px;
+    margin-bottom: 190px;
 }
 
 .playerSlot {
@@ -149,4 +132,290 @@ body {
 
 .playerSlot:hover .delete {
     display: block;
+}
+
+/* responsive for mobile */
+@media (max-width: 768px) {
+    body {
+        box-sizing: border-box;
+    }
+
+    .stadium {
+        padding: 20px;
+        background-size: cover;
+        border-radius: 50px;
+        border: 2px rgb(0, 68, 255) solid;
+        margin-top: 20px;
+        padding: auto;
+    }
+    
+    .playerSlot {
+        height: 120px;
+        width: 80px;
+    }
+
+    .playerSlot:hover {
+        transform: scale(1.5);
+    }
+    
+    #attackPlayer {
+        margin-top: 90px;
+        width: 80%;
+    }
+
+    #midPlayer {
+        margin-top: 250px;
+        width: 110%;
+    }
+
+    #defencePlayer {
+        margin-top: 80px;
+        width: 120%;
+    }
+
+    #gkPlayer {
+        margin-bottom: 170px;
+    }
+
+    .playerCard .posStyle {
+        position: absolute;
+        font-size: 8px;
+        font-weight: bold;
+        top: 18px;
+        left: 8px;
+    }
+
+    .playerCard .ratingStyle {
+        position: absolute;
+        font-size: 8px;
+        font-weight: bold;
+        top: 25px;
+        left: 10px;
+    }
+
+    .playerCard .nameStyle {
+        font-size: 9px;
+        font-weight: bold;
+    }
+
+    .playerCard .infoStyle {
+        font-size: 4px;
+        font-weight: bold;
+    }
+
+    .playerCard .infoValStyle {
+        font-size: 4px;
+        font-weight: bold;
+    }
+
+    .playerCard .img {
+        height: 50px;
+        width: 25;
+        z-index: 1;
+    }
+    
+    .playerCard .imgClub {
+        position: absolute;
+        height: 30px;
+        width: 10px;
+        right: 10px;
+        top: 50px;
+
+    }
+    
+    .playerCard .imgNation {
+        position: absolute;
+        height: 30px;
+        width: 12px;
+        right: 9px;
+        top: 30px;
+    }
+
+    .playerCard .edit {
+        display: none;
+        background-color: beige;
+        font-size: 6px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .playerCard .delete {
+        display: none;
+        background-color: black;
+        font-size: 6px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #standardFields {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #playerFormContainer {
+        padding: 16px;
+        height: auto;
+        border-radius: 20px;
+    }
+
+    .crudBtn {
+        margin-bottom: 100%;
+    }
+
+    .resSec {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
+
+}
+
+/* responsive for tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    body {
+        box-sizing: border-box;
+    }
+
+    .mainForm {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 2rem;
+    }
+
+    .stadium {
+        padding: 20px;
+        background-size: cover;
+        border-radius: 50px;
+        border: 2px rgb(0, 68, 255) solid;
+        margin-top: 20px;
+        padding: auto;
+    }
+    
+    .playerSlot {
+        height: 120px;
+        width: 80px;
+    }
+
+    .playerSlot:hover {
+        transform: scale(1.5);
+    }
+    
+    #attackPlayer {
+        margin-top: 120px;
+        width: 50%;
+    }
+
+    #midPlayer {
+        margin-top: 250px;
+        width: 70%;
+    }
+
+    #defencePlayer {
+        margin-top: 10px;
+        width: 110%;
+    }
+
+    #gkPlayer {
+        margin-bottom: 170px;
+    }
+
+    .playerCard .posStyle {
+        position: absolute;
+        font-size: 8px;
+        font-weight: bold;
+        top: 18px;
+        left: 8px;
+    }
+
+    .playerCard .ratingStyle {
+        position: absolute;
+        font-size: 8px;
+        font-weight: bold;
+        top: 25px;
+        left: 10px;
+    }
+
+    .playerCard .nameStyle {
+        font-size: 9px;
+        font-weight: bold;
+    }
+
+    .playerCard .infoStyle {
+        font-size: 4px;
+        font-weight: bold;
+    }
+
+    .playerCard .infoValStyle {
+        font-size: 4px;
+        font-weight: bold;
+    }
+
+    .playerCard .img {
+        height: 50px;
+        width: 25;
+        z-index: 1;
+    }
+    
+    .playerCard .imgClub {
+        position: absolute;
+        height: 30px;
+        width: 10px;
+        right: 10px;
+        top: 50px;
+
+    }
+    
+    .playerCard .imgNation {
+        position: absolute;
+        height: 30px;
+        width: 12px;
+        right: 9px;
+        top: 30px;
+    }
+
+    .playerCard .edit {
+        display: none;
+        background-color: beige;
+        font-size: 6px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .playerCard .delete {
+        display: none;
+        background-color: black;
+        font-size: 6px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #standardFields {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #playerFormContainer {
+        padding: 16px;
+        height: auto;
+        border-radius: 20px;
+    }
+
+    .crudBtn {
+        margin-bottom: 100%;
+    }
+
+    .resSec {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
+
+
 }
