@@ -315,8 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
             playerCard.appendChild(container);
         }
         
-    
-        playerSlot.innerHTML = '';
+        
         playerSlot.appendChild(playerCard);
     
         playerFormContainer.classList.add('hidden');
