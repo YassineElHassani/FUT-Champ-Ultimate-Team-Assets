@@ -182,18 +182,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
             attributes.forEach(attr => {
                 const infoContainer = document.createElement('div');
-                const textCon = document.createElement('p');
-                textCon.className = 'infoStyle text-[7px] text-white';
-                textCon.textContent = attr.label;
-                textCon.style.fontWeight = 'bold';
+                const text = document.createElement('p');
+                text.className = 'infoStyle text-[7px] text-white';
+                text.textContent = attr.label;
+                text.style.fontWeight = 'bold';
         
-                const textValues = document.createElement('p');
-                textValues.className = 'infoValStyle text-[8px] text-amber-400';
-                textValues.textContent = attr.value;
-                textValues.style.fontWeight = 'bold';
+                const textValue = document.createElement('p');
+                textValue.className = 'infoValStyle text-[8px] text-amber-400';
+                textValue.textContent = attr.value;
+                textValue.style.fontWeight = 'bold';
         
-                infoContainer.appendChild(textCon);
-                infoContainer.appendChild(textValues);
+                infoContainer.appendChild(text);
+                infoContainer.appendChild(textValue);
                 container.appendChild(infoContainer);
             });
         
