@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerFormContainer = document.getElementById('playerFormContainer');
     const playerForm = document.getElementById('playerForm');
     const playerPosition = document.getElementById('playerPosition');
-    const standardPlayer = document.getElementById('standardPlayer');
-    const gkFields = document.getElementById('gkFields');
     const cancelBtn = document.getElementById('cancelBtn');
     const submitBtn = document.getElementById('submitBtn');
 
@@ -17,12 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         playerForm.reset();
     });
 
-    playerPosition.addEventListener('change', (e) => {
-        const isGoalkeeper = e.target.value === 'GK';
-        standardPlayer.classList.toggle('hidden', isGoalkeeper);
-        gkFields.classList.toggle('hidden', !isGoalkeeper);
-    });
-
     playerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const position = playerPosition.value;
@@ -33,12 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const reserveSlots = document.querySelectorAll('.reserve');
             playerSlot = Array.from(reserveSlots).find(slot => slot.children.length === 0);
         }
-    
+
         const playerRating = document.getElementById('playerRating').value;
         const playerPhoto = document.getElementById('playerPhoto').value;
         const playerName = document.getElementById('playerName').value;
         const playerNationality = document.getElementById('playerNationality').value;
         const playerClub = document.getElementById('playerClub').value;
+
+        const playerDiving = document.getElementById('playerDiving').value;
+        const playerHandling = document.getElementById('playerHandling').value;
+        const playerKicking = document.getElementById('playerKicking').value;
+        const playerReflexes = document.getElementById('playerReflexes').value;
+        const playerSpeed = document.getElementById('playerSpeed').value;
+        const playerPositioning = document.getElementById('playerPositioning').value;
+
+        const playerPace = document.getElementById('playerPace').value;
+        const playerShooting = document.getElementById('playerShooting').value;
+        const playerPassing = document.getElementById('playerPassing').value;
+        const playerDribbling = document.getElementById('playerDribbling').value;
+        const playerDefending = document.getElementById('playerDefending').value;
+        const playerPhysical = document.getElementById('playerPhysical').value;
+
 
         const playerCard = document.createElement('div');
         playerCard.className = 'playerCard w-full h-full flex flex-col items-center justify-center';
@@ -58,12 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         if (position === 'GK') {
-            const playerDiving = document.getElementById('playerDiving').value;
-            const playerHandling = document.getElementById('playerHandling').value;
-            const playerKicking = document.getElementById('playerKicking').value;
-            const playerReflexes = document.getElementById('playerReflexes').value;
-            const playerSpeed = document.getElementById('playerSpeed').value;
-            const playerPositioning = document.getElementById('playerPositioning').value;
 
             const crudBtnDiv = document.createElement('div');
             crudBtnDiv.className = 'crudBtn';
@@ -82,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
             editButton.addEventListener('click', function() {
                 playerFormContainer.classList.remove('hidden');
 
+                document.getElementById('playerRating').value = playerRating;
                 document.getElementById('playerPosition').value = position;
                 document.getElementById('playerName').value = playerName;
                 document.getElementById('playerNationality').value = playerNationality;
                 document.getElementById('playerClub').value = playerClub;
                 document.getElementById('playerPhoto').value = playerPhoto;
-                document.getElementById('playerRating').value = playerRating;
                 document.getElementById('playerDiving').value = playerDiving;
                 document.getElementById('playerHandling').value = playerHandling;
                 document.getElementById('playerKicking').value = playerKicking;
@@ -189,12 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             playerCard.appendChild(container);
         
         } else {
-            const playerPace = document.getElementById('playerPace').value;
-            const playerShooting = document.getElementById('playerShooting').value;
-            const playerPassing = document.getElementById('playerPassing').value;
-            const playerDribbling = document.getElementById('playerDribbling').value;
-            const playerDefending = document.getElementById('playerDefending').value;
-            const playerPhysical = document.getElementById('playerPhysical').value;
 
             const crudBtnDiv = document.createElement('div');
             crudBtnDiv.className = 'crudBtn';
@@ -212,12 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
             editButton.addEventListener('click', function() {
                 playerFormContainer.classList.remove('hidden');
 
+                document.getElementById('playerRating').value = playerRating;
                 document.getElementById('playerPosition').value = position;
                 document.getElementById('playerName').value = playerName;
                 document.getElementById('playerNationality').value = playerNationality;
                 document.getElementById('playerClub').value = playerClub;
                 document.getElementById('playerPhoto').value = playerPhoto;
-                document.getElementById('playerRating').value = playerRating;
                 document.getElementById('playerPace').value = playerPace;
                 document.getElementById('playerShooting').value = playerShooting;
                 document.getElementById('playerPassing').value = playerPassing;

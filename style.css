@@ -16,7 +16,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-    border: 2px rgb(0, 68, 255) solid;
+    /* border: 2px rgb(0, 68, 255) solid; */
     border-radius: 50px;
 }
 
@@ -31,7 +31,6 @@ body {
 #attackPlayer .LF, .RF {
     margin-top: 30px;
 }
-
 
 #midPlayer {
     display: flex;
@@ -144,7 +143,7 @@ body {
         padding: 20px;
         background-size: cover;
         border-radius: 50px;
-        border: 2px rgb(0, 68, 255) solid;
+        /* border: 2px rgb(0, 68, 255) solid; */
         margin-top: 20px;
         padding: auto;
     }
@@ -160,7 +159,7 @@ body {
     
     #attackPlayer {
         margin-top: 90px;
-        width: 80%;
+        width: 90%;
     }
 
     #midPlayer {
@@ -290,7 +289,7 @@ body {
         padding: 20px;
         background-size: cover;
         border-radius: 50px;
-        border: 2px rgb(0, 68, 255) solid;
+        /* border: 2px rgb(0, 68, 255) solid; */
         margin-top: 20px;
         padding: auto;
     }
@@ -416,6 +415,5 @@ body {
         justify-content: space-around;
         margin-bottom: 50px;
     }
-
 
 }
