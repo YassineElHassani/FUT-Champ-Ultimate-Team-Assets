@@ -62,7 +62,7 @@ body {
 
 .playerSlot {
     position: relative;
-    background-image: url("./src/assets/img/rttk.png");
+    background-image: url("./src/assets/img/emptySlot.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

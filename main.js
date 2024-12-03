@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerFormContainer = document.getElementById('playerFormContainer');
     const playerForm = document.getElementById('playerForm');
     const playerPosition = document.getElementById('playerPosition');
+    const standardPlayer = document.getElementById('standardPlayer');
+    const gkFields = document.getElementById('gkFields');
     const cancelBtn = document.getElementById('cancelBtn');
     const submitBtn = document.getElementById('submitBtn');
 
@@ -13,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelBtn.addEventListener('click', () => {
         playerFormContainer.classList.add('hidden');
         playerForm.reset();
+    });
+
+    playerPosition.addEventListener('change', (e) => {
+        const isGoalkeeper = e.target.value === 'GK';
+        standardPlayer.classList.toggle('hidden', isGoalkeeper);
+        gkFields.classList.toggle('hidden', !isGoalkeeper);
     });
 
     playerForm.addEventListener('submit', (e) => {
@@ -32,12 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const playerNationality = document.getElementById('playerNationality').value;
         const playerClub = document.getElementById('playerClub').value;
 
-        const playerDiving = document.getElementById('playerDiving').value;
-        const playerHandling = document.getElementById('playerHandling').value;
-        const playerKicking = document.getElementById('playerKicking').value;
-        const playerReflexes = document.getElementById('playerReflexes').value;
-        const playerSpeed = document.getElementById('playerSpeed').value;
-        const playerPositioning = document.getElementById('playerPositioning').value;
+        
 
         const playerPace = document.getElementById('playerPace').value;
         const playerShooting = document.getElementById('playerShooting').value;
@@ -65,6 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         if (position === 'GK') {
+
+            const playerDiving = document.getElementById('playerDiving').value;
+            const playerHandling = document.getElementById('playerHandling').value;
+            const playerKicking = document.getElementById('playerKicking').value;
+            const playerReflexes = document.getElementById('playerReflexes').value;
+            const playerSpeed = document.getElementById('playerSpeed').value;
+            const playerPositioning = document.getElementById('playerPositioning').value;
 
             const crudBtnDiv = document.createElement('div');
             crudBtnDiv.className = 'crudBtn';
@@ -172,18 +182,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
             attributes.forEach(attr => {
                 const infoContainer = document.createElement('div');
-                const text = document.createElement('p');
-                text.className = 'infoStyle text-[7px] text-white';
-                text.textContent = attr.label;
-                text.style.fontWeight = 'bold';
+                const textCon = document.createElement('p');
+                textCon.className = 'infoStyle text-[7px] text-white';
+                textCon.textContent = attr.label;
+                textCon.style.fontWeight = 'bold';
         
-                const textValue = document.createElement('p');
-                textValue.className = 'infoValStyle text-[8px] text-amber-400';
-                textValue.textContent = attr.value;
-                textValue.style.fontWeight = 'bold';
+                const textValues = document.createElement('p');
+                textValues.className = 'infoValStyle text-[8px] text-amber-400';
+                textValues.textContent = attr.value;
+                textValues.style.fontWeight = 'bold';
         
-                infoContainer.appendChild(text);
-                infoContainer.appendChild(textValue);
+                infoContainer.appendChild(textCon);
+                infoContainer.appendChild(textValues);
                 container.appendChild(infoContainer);
             });
         
@@ -314,7 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
             playerCard.appendChild(container);
         }
-        
         
         playerSlot.appendChild(playerCard);
     
