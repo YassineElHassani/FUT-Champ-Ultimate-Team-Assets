@@ -40,7 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const playerNationality = document.getElementById('playerNationality').value;
         const playerClub = document.getElementById('playerClub').value;
 
-        
+        const playerDiving = document.getElementById('playerDiving').value;
+        const playerHandling = document.getElementById('playerHandling').value;
+        const playerKicking = document.getElementById('playerKicking').value;
+        const playerReflexes = document.getElementById('playerReflexes').value;
+        const playerSpeed = document.getElementById('playerSpeed').value;
+        const playerPositioning = document.getElementById('playerPositioning').value;
 
         const playerPace = document.getElementById('playerPace').value;
         const playerShooting = document.getElementById('playerShooting').value;
@@ -48,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const playerDribbling = document.getElementById('playerDribbling').value;
         const playerDefending = document.getElementById('playerDefending').value;
         const playerPhysical = document.getElementById('playerPhysical').value;
-
 
         const playerCard = document.createElement('div');
         playerCard.className = 'playerCard w-full h-full flex flex-col items-center justify-center';
@@ -68,13 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         if (position === 'GK') {
-
-            const playerDiving = document.getElementById('playerDiving').value;
-            const playerHandling = document.getElementById('playerHandling').value;
-            const playerKicking = document.getElementById('playerKicking').value;
-            const playerReflexes = document.getElementById('playerReflexes').value;
-            const playerSpeed = document.getElementById('playerSpeed').value;
-            const playerPositioning = document.getElementById('playerPositioning').value;
 
             const crudBtnDiv = document.createElement('div');
             crudBtnDiv.className = 'crudBtn';
